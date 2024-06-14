@@ -93,6 +93,7 @@ const Main = (props: Props) => {
         </MainTitle>
         <SubTitle>
           -PatienceDay Clock-
+          {/* Patientの方が良いかも？ */}
         </SubTitle>
         <TopMessage lightDark={props.lightOrDark} />  
       </Wrapper>

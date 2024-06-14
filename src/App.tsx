@@ -5,6 +5,7 @@ import EasyInfo from './components/EasyInfo';
 import Main from './components/Main';
 import FixedMenu from './components/FixedMenu';
 import ModeSwichBtn from './components/ModeSwichBtn';
+import { localGetItem, localSetItem } from './functions/localStorageFunc';
 // import MainWrapper from './components/MainWrapper';
 
 
@@ -16,10 +17,21 @@ function App() {
   // trueならライトモード
   // falseならダークモード
 
-  const  [lightOrDark, setlightOrDark] = useState<boolean>(true)
+  const validateBoolean = (booleanStr: string): boolean => {
+    return booleanStr === "true";
+  }
+
+  const localLDKey: string = "lightOrDark"
+
+  const localLDValue: string | any = localGetItem(localLDKey)
+
+  const  [lightOrDark, setlightOrDark] 
+    = useState<boolean>(!!localLDValue===false ? true : validateBoolean(localLDValue))
 
   const toggleLD = (): void => {
-    setlightOrDark(!lightOrDark)
+    const tmp: boolean = !lightOrDark
+    localSetItem(localLDKey, String(tmp))
+    setlightOrDark(tmp)
   }
 
   return (
