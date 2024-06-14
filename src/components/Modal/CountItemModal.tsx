@@ -46,12 +46,12 @@ align-items: center;
 justify-content: center;
 `
 
-const Modal = styled.div<{isDeadLine: boolean, isLightOrDark: boolean}>`
-color: ${props => props.isLightOrDark ? "black" : "#FDFFE2"};
+const Modal = styled.div<{$isDeadLine?: boolean, $isLightOrDark?: boolean}>`
+color: ${props => props.$isLightOrDark ? "black" : "#FDFFE2"};
 z-index:2;
 width:50%;
 padding: 1em;
-${props => props.isDeadLine ? succeedBGColor : props.isLightOrDark ? lightModeBGColor : darkModeBGColor}
+${props => props.$isDeadLine ? succeedBGColor : props.$isLightOrDark ? lightModeBGColor : darkModeBGColor}
 border: 0.2rem black solid;
 border-radius: 0.8rem;
 @media (max-width: 1000px) {
@@ -69,7 +69,7 @@ border-radius: 0.8rem;
 }
 `
 
-const Button = styled.div<{isLightOrDark: boolean}>`
+const Button = styled.div<{$isLightOrDark?: boolean}>`
 font-size: 3rem;
 width: 15rem;
 margin: 0 auto;
@@ -79,12 +79,12 @@ margin-bottom: 1rem;
 `
 
 // 
-const CountdownSpace = styled.div<{isDeadLine: boolean, isLightOrDark: boolean}>`
+const CountdownSpace = styled.div<{$isDeadLine?: boolean, $isLightOrDark?: boolean}>`
 
 border-radius: 0.8rem;
 padding: 1rem;
 margin: 1rem 0;
-${props => props.isDeadLine ? succeedBGColor : props.isLightOrDark ? lightModeCDSColor : darkModeCDSColor}
+${props => props.$isDeadLine ? succeedBGColor : props.$isLightOrDark ? lightModeCDSColor : darkModeCDSColor}
 `
 
 const MessageWrapper = styled.div`
@@ -112,7 +112,7 @@ const CountItemModal = (props: Props) => {
   if (props.show) {
     return (
     <Wrapper>
-      <Modal isDeadLine={props.deadLine} isLightOrDark={props.lightOrDark}>
+      <Modal $isDeadLine={props.deadLine} $isLightOrDark={props.lightOrDark}>
         <MessageWrapper>
           <MessageHeading>
             ビール
@@ -130,14 +130,14 @@ const CountItemModal = (props: Props) => {
             耐えている！
           </MessageSub>
         </MessageWrapper>
-        <CountdownSpace isDeadLine={props.deadLine} isLightOrDark={props.lightOrDark}>
+        <CountdownSpace $isDeadLine={props.deadLine} $isLightOrDark={props.lightOrDark}>
           {props.deadLine ? 
             <><MessageCount>目標達成</MessageCount><MessageCount>おめでとう！</MessageCount></> : 
             <><MessageSub>目標まであと</MessageSub><MessageCount>XX日</MessageCount><MessageCount>XX時間XX分XX秒</MessageCount></>
           }
         </CountdownSpace>
-        <Button isLightOrDark={props.lightOrDark}>終了する</Button>
-        <Button isLightOrDark={props.lightOrDark} onClick={props.onClickFunc}>閉じる</Button>
+        <Button $isLightOrDark={props.lightOrDark}>終了する</Button>
+        <Button $isLightOrDark={props.lightOrDark} onClick={props.onClickFunc}>閉じる</Button>
       </Modal>
     </Wrapper>
     )

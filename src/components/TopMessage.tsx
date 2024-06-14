@@ -14,7 +14,7 @@ background: #FDFFE2;
 `
 
 // section以外の方が良いかも
-const MessageSection = styled.p<{isLightOrDark: boolean}>`
+const MessageSection = styled.p<{$isLightOrDark?: boolean}>`
 border: dashed black;
 width: 45rem;
 font-size: 2.6rem;
@@ -26,7 +26,7 @@ color: black;
 font-weight: bold;
 display: inline-block;
 text-align: center;
-${props => props.isLightOrDark ? backgroundLightMode : backgroundDarkMode};
+${props => props.$isLightOrDark ? backgroundLightMode : backgroundDarkMode};
 `
 
 const TopMessage = (props: Props) => {
@@ -35,7 +35,7 @@ const TopMessage = (props: Props) => {
 
 
   return (
-    <MessageSection isLightOrDark={props.lightDark}>
+    <MessageSection $isLightOrDark={props.lightDark}>
       現在我慢している項目がありません。
     </MessageSection>
   )

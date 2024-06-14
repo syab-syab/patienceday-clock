@@ -9,6 +9,7 @@ type Props = {
 
 // 500pxでメディアクエリ
 const validateData: boolean = true
+// const validateData: boolean = false
 
 const lightMode: string = `
 color: black;
@@ -41,12 +42,12 @@ text-align: center;
 // heightは画面全コンテンツが画面内に収まるように
 // 画面内スクロールはこっちで指定した方が良いかも
 // スクロールバーも消す(ブラウザごとに設定が異なる)
-const Wrapper = styled.main<{isLightOrDark: boolean}>`
+const Wrapper = styled.main<{$isLightOrDark?: boolean}>`
 height: 90vh;
 ${validateData ? scroll : nonScroll}
 ${hiddenScrollBar}
 text-align: center;
-${props => props.isLightOrDark ? lightMode : darkMode};
+${props => props.$isLightOrDark ? lightMode : darkMode};
 margin: 0 auto;
 padding: 5rem 0 5rem;
 @media (max-width: 500px) {
@@ -81,13 +82,13 @@ const Main = (props: Props) => {
 
   if(validateData) {
     return (
-      <Wrapper isLightOrDark={props.lightOrDark}>
+      <Wrapper $isLightOrDark={props.lightOrDark}>
         <CountSection lightOrDark={props.lightOrDark} />
       </Wrapper>
     )
    } else {
       return(
-      <Wrapper isLightOrDark={props.lightOrDark}>
+      <Wrapper $isLightOrDark={props.lightOrDark}>
         <MainTitle>
           世界忍耐時計
         </MainTitle>

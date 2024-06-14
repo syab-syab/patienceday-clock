@@ -19,8 +19,8 @@ const darkMode: string = `
 
 // 796pxでメインと被るからメディアクエリで変える
 
-const Button = styled.button<{isLightOrDark: boolean}>`
-  ${props => props.isLightOrDark ? lightMode : darkMode}
+const Button = styled.button<{$isLightOrDark?: boolean}>`
+  ${props => props.$isLightOrDark ? lightMode : darkMode}
   font-size: 2.7rem;
   border: black solid;
   border-radius: 0.4rem;
@@ -40,7 +40,7 @@ const ModeSwichBtn = (props: Props) => {
 
   return (
     <>
-      <Button isLightOrDark={props.lightOrDark} onClick={props.toggleVal}>{props.lightOrDark ? "ライト" : "ダーク"}</Button>
+      <Button $isLightOrDark={props.lightOrDark} onClick={props.toggleVal}>{props.lightOrDark ? "ライト" : "ダーク"}</Button>
     </>
   )
 }

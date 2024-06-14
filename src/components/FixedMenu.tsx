@@ -30,12 +30,12 @@ justify-content: space-around;
 align-items: center;
 `
 
-const MenuItem = styled.div<{isLightOrDark: boolean}>`
+const MenuItem = styled.div<{$isLightOrDark?: boolean}>`
 padding: 1rem 0;
 vertical-align: center;
 flex-direction: column;
 flex-grow: 1;
-${props => props.isLightOrDark ? lightMode : darkMode};
+${props => props.$isLightOrDark ? lightMode : darkMode};
 border: solid 1px;
 font-size: 3rem;
 @media (max-width: 500px) {
@@ -62,9 +62,9 @@ const FixedMenu = (props: Props) => {
   return (
     <>
       <Menu>
-        <MenuItem isLightOrDark={props.lightOrDark}>リンク</MenuItem>
-        <MenuItem isLightOrDark={props.lightOrDark} onClick={toggleAddModal}>追加</MenuItem>
-        <MenuItem isLightOrDark={props.lightOrDark} onClick={toggleHistoryModal}>履歴</MenuItem>
+        <MenuItem $isLightOrDark={props.lightOrDark} onClick={toggleAddModal}>追加</MenuItem>
+        <MenuItem $isLightOrDark={props.lightOrDark}>リンク</MenuItem>
+        <MenuItem $isLightOrDark={props.lightOrDark} onClick={toggleHistoryModal}>履歴</MenuItem>
       </Menu>
       <AddModal show={addModalShow} onClickFunc={toggleAddModal} lightOrDark={props.lightOrDark} />
       <HistoryModal show={historyModalShow} onClickFunc={toggleHistoryModal} lightOrDark={props.lightOrDark} />

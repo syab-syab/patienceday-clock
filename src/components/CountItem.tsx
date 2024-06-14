@@ -71,9 +71,9 @@ const Wrapper = styled.div`
 
 // 下の二つにエラー出てるけど後回し
 // 忍耐の内容
-const Heading = styled.p<{isDeadLine: boolean, isLightOrDark: boolean, isHistory: boolean}>`
+const Heading = styled.p<{$isDeadLine?: boolean, $isLightOrDark?: boolean, $isHistory?: boolean}>`
   ${
-    props => props.isDeadLine ? succeedColor : props.isHistory ? historyContentColor : props.isLightOrDark ? lightModeContentColor : darkModeContentColor
+    props => props.$isDeadLine ? succeedColor : props.$isHistory ? historyContentColor : props.$isLightOrDark ? lightModeContentColor : darkModeContentColor
   }
   margin: 0;
   font-size: 1.5rem;
@@ -83,9 +83,9 @@ const Heading = styled.p<{isDeadLine: boolean, isLightOrDark: boolean, isHistory
 `
 
 // 忍耐の期限(履歴では記録)
-const Content = styled.p<{isDeadLine: boolean, isLightOrDark: boolean, isHistory: boolean}>`
+const Content = styled.p<{$isDeadLine?: boolean, $isLightOrDark?: boolean, $isHistory?: boolean}>`
   ${
-    props => props.isDeadLine ? succeedColor : props.isHistory ? historyContentColor : props.isLightOrDark ? lightModeContentColor : darkModeContentColor
+    props => props.$isDeadLine ? succeedColor : props.$isHistory ? historyContentColor : props.$isLightOrDark ? lightModeContentColor : darkModeContentColor
   }
   margin: 0;
   font-size: 1.5rem;
@@ -93,10 +93,10 @@ const Content = styled.p<{isDeadLine: boolean, isLightOrDark: boolean, isHistory
   padding: 1rem 0;
 `
 
-const Icon = styled.div<{isDeadLine: boolean, isLightOrDark: boolean, isHistory: boolean}>`
+const Icon = styled.div<{$isDeadLine?: boolean, $isLightOrDark?: boolean, $isHistory?: boolean}>`
   ${
     props =>
-      props.isDeadLine ? succeedColor : props.isHistory ? historyIconColor : props.isLightOrDark ? lightModeIconColor : darkModeIconColor
+      props.$isDeadLine ? succeedColor : props.$isHistory ? historyIconColor : props.$isLightOrDark ? lightModeIconColor : darkModeIconColor
   };
   border: 0.1rem solid black;
   padding: 1rem 1rem 0 1rem;
@@ -111,12 +111,12 @@ const CountItem = (props: Props) => {
   return (
     <>
       <Item onClick={props.onClickFunc}>
-        <Icon isDeadLine={props.deadLine} isLightOrDark={props.lightOrDark} isHistory={props.history}>
+        <Icon $isDeadLine={props.deadLine} $isLightOrDark={props.lightOrDark} $isHistory={props.history}>
           {props.history ? <FaTrashAlt /> : props.deadLine ? <FaThumbsUp /> : <FaClock />}
         </Icon>
         <Wrapper>
-          <Heading isDeadLine={props.deadLine} isLightOrDark={props.lightOrDark} isHistory={props.history}>{props.content}</Heading>
-          <Content isDeadLine={props.deadLine} isLightOrDark={props.lightOrDark} isHistory={props.history}>{props.count}</Content>
+          <Heading $isDeadLine={props.deadLine} $isLightOrDark={props.lightOrDark} $isHistory={props.history}>{props.content}</Heading>
+          <Content $isDeadLine={props.deadLine} $isLightOrDark={props.lightOrDark} $isHistory={props.history}>{props.count}</Content>
         </Wrapper>
       </Item>
     </>

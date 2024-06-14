@@ -38,12 +38,12 @@ align-items: center;
 justify-content: center;
 `
 
-const Modal = styled.div<{isLightOrDark: boolean}>`
-color: ${props =>  props.isLightOrDark ? 'black' : '#FDFFE2'};
+const Modal = styled.div<{$isLightOrDark?: boolean}>`
+color: ${props =>  props.$isLightOrDark ? 'black' : '#FDFFE2'};
 z-index:2;
 width:50%;
 padding: 1em;
-${props =>  props.isLightOrDark ? lightModeBGColor : darkModeBGColor}
+${props =>  props.$isLightOrDark ? lightModeBGColor : darkModeBGColor}
 border: 0.2rem black solid;
 border-radius: 0.8rem;
 @media (max-width: 1000px) {
@@ -97,21 +97,21 @@ const MessageSub = styled.p`
 `
 
 // input類のサイズは本番で
-const ContentInput = styled.input<{isLightOrDark: boolean}>`
+const ContentInput = styled.input<{$isLightOrDark?: boolean}>`
   margin: 1rem;
   border: 0.1rem solid;
-  ${props => props.isLightOrDark ? lightModeBGColor : darkModeBGColor}
+  ${props => props.$isLightOrDark ? lightModeBGColor : darkModeBGColor}
 `
-const DayInput = styled.input<{isLightOrDark: boolean}>`
+const DayInput = styled.input<{$isLightOrDark?: boolean}>`
   margin: 1rem;
   border: 0.1rem solid;
-  ${props => props.isLightOrDark ? lightModeBGColor : darkModeBGColor}
+  ${props => props.$isLightOrDark ? lightModeBGColor : darkModeBGColor}
 `
 
-const TimeInput = styled.input<{isLightOrDark: boolean}>`
+const TimeInput = styled.input<{$isLightOrDark?: boolean}>`
   margin: 1rem;
   border: 0.1rem solid;
-  ${props => props.isLightOrDark ? lightModeBGColor : darkModeBGColor}
+  ${props => props.$isLightOrDark ? lightModeBGColor : darkModeBGColor}
 `
 
 const AddModal = (props: Props) => {
@@ -119,19 +119,19 @@ const AddModal = (props: Props) => {
   if (props.show) {
     return (
       <Wrapper>
-        <Modal isLightOrDark={props.lightOrDark}>
+        <Modal $isLightOrDark={props.lightOrDark}>
           <MessageWrapper>
             <MessageHeading>
               何を我慢する？
             </MessageHeading>
-            <ContentInput type='text' isLightOrDark={props.lightOrDark} />
+            <ContentInput type='text' $isLightOrDark={props.lightOrDark} />
             <MessageSub>
               どのくらい我慢する？
             </MessageSub>
-            <DayInput type='text'  isLightOrDark={props.lightOrDark} />日
+            <DayInput type='text' $isLightOrDark={props.lightOrDark} />日
             <br />
             {/* ↓は本番ではselect */}
-            <TimeInput type='text' isLightOrDark={props.lightOrDark} />時間
+            <TimeInput type='text' $isLightOrDark={props.lightOrDark} />時間
           </MessageWrapper>
           <StartButton>始める</StartButton>
           <CloseButton onClick={props.onClickFunc}>閉じる</CloseButton>
