@@ -36,7 +36,7 @@ function App() {
 
   return (
     <>
-      <EasyInfo value={"-PatienceDay Clock-"} tag={true} />
+      <EasyInfo value={"-PatientDay Clock-"} tag={true} />
 
         {/* ライト・ダークモード切替ボタン */}
         <ModeSwichBtn lightOrDark={lightOrDark} toggleVal={toggleLD} />

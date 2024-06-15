@@ -8,7 +8,9 @@ type Props = {
 }
 
 
-// モードの色があべこべだから後で直す
+// inputのスタイルが崩れているので
+// width, height, font-sizeで大きさを調整して
+// displayのflexとかfloatとかで位置を調整する
 
 // ライトモード
 // 文字色#FDFFE2
@@ -81,7 +83,7 @@ const StartButton = styled.div`
 `
 
 const MessageWrapper = styled.div`
-padding: 0;
+padding: 1rem 3rem;
 margin: 0;
 font-size: 4rem;
 `
@@ -100,6 +102,8 @@ const MessageSub = styled.p`
 const ContentInput = styled.input<{$isLightOrDark?: boolean}>`
   margin: 1rem;
   border: 0.1rem solid;
+  width: 100%;
+  height: 100%;
   ${props => props.$isLightOrDark ? lightModeBGColor : darkModeBGColor}
 `
 const DayInput = styled.input<{$isLightOrDark?: boolean}>`
@@ -128,10 +132,10 @@ const AddModal = (props: Props) => {
             <MessageSub>
               どのくらい我慢する？
             </MessageSub>
-            <DayInput type='text' $isLightOrDark={props.lightOrDark} />日
+            <DayInput type='text' $isLightOrDark={props.lightOrDark} /><label>日</label>
             <br />
             {/* ↓は本番ではselect */}
-            <TimeInput type='text' $isLightOrDark={props.lightOrDark} />時間
+            <TimeInput type='text' $isLightOrDark={props.lightOrDark} /><label>時間</label>
           </MessageWrapper>
           <StartButton>始める</StartButton>
           <CloseButton onClick={props.onClickFunc}>閉じる</CloseButton>
