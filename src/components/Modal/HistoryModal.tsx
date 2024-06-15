@@ -8,6 +8,12 @@ type Props = {
   onClickFunc: () => void
 }
 
+// 削除機能を追加すること
+// 追加機能と編集機能を付けてからだから優先度は最後
+// func: deleteDeadline
+// 詳細情報のconfirmも必要かもしれない
+// confirmで削除するかどうかを尋ねる感じにする
+
 // ライトモード
 const lightModeBGColor: string = `
   background: #F5FFA2;
@@ -33,12 +39,12 @@ align-items: center;
 justify-content: center;
 `
 
-const Modal = styled.div<{isLightOrDark: boolean}>`
-color: ${props => props.isLightOrDark ? "black" : "#FDFFE2"};
+const Modal = styled.div<{$isLightOrDark?: boolean}>`
+color: ${props => props.$isLightOrDark ? "black" : "#FDFFE2"};
 z-index:2;
 width:50%;
 padding: 1em;
-${props => props.isLightOrDark ? lightModeBGColor : darkModeBGColor}
+${props => props.$isLightOrDark ? lightModeBGColor : darkModeBGColor}
 border: 0.2rem black solid;
 border-radius: 0.8rem;
 @media (max-width: 1000px) {
@@ -93,7 +99,7 @@ const HistoryModal = (props: Props) => {
   if (props.show) {
     return (
     <Wrapper>
-      <Modal isLightOrDark={props.lightOrDark}>
+      <Modal $isLightOrDark={props.lightOrDark}>
         <MessageWrapper>
           <MessageHeading>
             履歴

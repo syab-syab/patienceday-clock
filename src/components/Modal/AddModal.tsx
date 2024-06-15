@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useState } from 'react'
+import millisecondsTest from '../../functions/millisecondsTest'
 
 type Props = {
   show: boolean,
@@ -112,13 +114,52 @@ const DayInput = styled.input<{$isLightOrDark?: boolean}>`
   ${props => props.$isLightOrDark ? lightModeBGColor : darkModeBGColor}
 `
 
-const TimeInput = styled.input<{$isLightOrDark?: boolean}>`
+const HourSelect = styled.select<{$isLightOrDark?: boolean}>`
   margin: 1rem;
   border: 0.1rem solid;
   ${props => props.$isLightOrDark ? lightModeBGColor : darkModeBGColor}
 `
 
+const selectHourValues: Array<string> = [
+  "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
+  "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+  "21", "22", "23"
+]
+
 const AddModal = (props: Props) => {
+
+  // 忍耐の内容(文字列)
+  const [content, setContent] = useState<string>("")
+  const contentHandleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setContent(e.target.value)
+  }
+
+  // 日数の期限
+  const [deadlineDay, setDeadlineDay] = useState<string>("0")
+  const deadlineDayHandleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setDeadlineDay(String(e.target.value))
+  }
+
+  const [deadlineHour, setDeadlineHour] = useState<string>("0")
+  const deadlineHourHandleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setDeadlineHour(e.target.value)
+  }
+
+  // 新たにカウントを追加する
+  // 編集や削除よりも優先する
+  const addCount = (): void => {
+    // あとで追加のロジックを書く
+    const tmp: number = Number(deadlineDay) * 86400000 + Number(deadlineHour) * 3600000
+    if (tmp <= 0 || content === "") {
+      alert("１時間以上の時間の入力、または忍耐の内容を入力してください。")
+    } else {
+      alert(`${content}を${millisecondsTest(tmp, true)}耐える`)
+      setContent("")
+      setDeadlineDay("0")
+      setDeadlineHour("0")
+    }
+  }
+
 
   if (props.show) {
     return (
@@ -128,16 +169,27 @@ const AddModal = (props: Props) => {
             <MessageHeading>
               何を我慢する？
             </MessageHeading>
-            <ContentInput type='text' $isLightOrDark={props.lightOrDark} />
+            <p>{deadlineDay}</p>
+            <ContentInput type='text' value={content} onChange={contentHandleChange} $isLightOrDark={props.lightOrDark} />
             <MessageSub>
               どのくらい我慢する？
             </MessageSub>
-            <DayInput type='text' $isLightOrDark={props.lightOrDark} /><label>日</label>
+            {/* type="number"ではないけど入力は数字だけを受け付けたい */}
+            {/* あとは一番上の位に0の入力を受け付けないようにしたい */}
+            <DayInput type='number' min="0" value={Number(deadlineDay)} onChange={deadlineDayHandleChange} $isLightOrDark={props.lightOrDark} /><label>日</label>
             <br />
             {/* ↓は本番ではselect */}
-            <TimeInput type='text' $isLightOrDark={props.lightOrDark} /><label>時間</label>
+            <HourSelect $isLightOrDark={props.lightOrDark} value={deadlineHour} onChange={(e) => deadlineHourHandleChange(e)}>
+              {
+                selectHourValues.map((h) => {
+                  return <option key={h} value={h}>{h}</option>
+                })
+              }
+            </HourSelect>
+            
+            <label>時間</label>
           </MessageWrapper>
-          <StartButton>始める</StartButton>
+          <StartButton onClick={addCount}>始める</StartButton>
           <CloseButton onClick={props.onClickFunc}>閉じる</CloseButton>
         </Modal>
       </Wrapper>

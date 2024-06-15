@@ -12,7 +12,7 @@ const modifyMilliSeconds = (unix: number, milliSec: number): Array<number> => {
   }
 }
 
-const millisecondsTest = (uni: number): string => {
+const millisecondsTest = (uni: number, short: boolean = false): string => {
   // 渡されたtimeを各ミリ秒で除算 ex) uni / 31536000000 = x.xxxx
   // 秒以外で答えが1以上なら余りを四捨五入して対応するミリ秒を乗算し、timeから減算 ex) uni - 31536000000 * x = y
   // 減算の答えを次に回していく
@@ -35,8 +35,12 @@ const millisecondsTest = (uni: number): string => {
   const returnSeconds: number = tmpMinutes[1] / 1000 
 
   // .toString().padStart( 2, '0')を付けなければ表示が遅れないっぽい
-  return `${returnDay}日${returnHour}時間${returnMinutes}分${returnSeconds.toString()}秒
-    `
+  if (short) {
+    return uni < 86400000 ? `${returnHour}時間` : `${returnDay}日${returnHour}時間`
+  } else {
+    return `${returnDay}日${returnHour}時間${returnMinutes}分${returnSeconds.toString()}秒`
+  }
+  
 }
 
 export default millisecondsTest

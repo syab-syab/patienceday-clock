@@ -109,6 +109,15 @@ font-size: 3rem;
 
 const CountItemModal = (props: Props) => {
 
+  // finishedの値を変更する(falseからtrueに)
+  // trueからfalseにはできないようにする
+  // 優先度は中、追加機能を実装してから
+  const toggleStatus = (): void => {
+    // 期限まで忍耐が続いていないものに対しては
+    // 本当に終了するかどうかを尋ねること
+    alert("カウントを終わらせます。")
+  }
+
   if (props.show) {
     return (
     <Wrapper>
@@ -136,7 +145,7 @@ const CountItemModal = (props: Props) => {
             <><MessageSub>目標まであと</MessageSub><MessageCount>XX日</MessageCount><MessageCount>XX時間XX分XX秒</MessageCount></>
           }
         </CountdownSpace>
-        <Button $isLightOrDark={props.lightOrDark}>終了する</Button>
+        <Button $isLightOrDark={props.lightOrDark} onClick={toggleStatus}>終了する</Button>
         <Button $isLightOrDark={props.lightOrDark} onClick={props.onClickFunc}>閉じる</Button>
       </Modal>
     </Wrapper>

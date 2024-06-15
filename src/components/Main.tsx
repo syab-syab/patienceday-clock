@@ -7,6 +7,11 @@ type Props = {
   lightOrDark: boolean
 }
 
+
+// 期限まで我慢したら自動的にfinishedがtureになるような関数(?)を
+// コンポーネントのどれかに定義する
+// 追加機能を実装してからやる 
+
 // 500pxでメディアクエリ
 const validateData: boolean = true
 // const validateData: boolean = false
