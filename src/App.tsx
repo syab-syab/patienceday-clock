@@ -6,11 +6,23 @@ import Main from './components/Main';
 import FixedMenu from './components/FixedMenu';
 import ModeSwichBtn from './components/ModeSwichBtn';
 import { localGetItem, localSetItem } from './functions/localStorageFunc';
-// import MainWrapper from './components/MainWrapper';
+import { Deadline } from './models/Deadline';
+import { db } from './models/db';
+import { useLiveQuery } from 'dexie-react-hooks'
+import { liveQuery } from 'dexie';
 
+
+// const {deadLine} = db
 
 
 function App() {
+
+  // finishedが0(まだ終了していないカウント)
+  // const allCounts: Array<Deadline> | any = useLiveQuery(
+  //   () => db.deadline.where("finished").equals(1).toArray(),
+  // [])
+  const allCounts: Array<Deadline> | any = liveQuery(() => db.deadline.toArray())
+  console.log(allCounts.count)
 
   // コンポーネントに渡すのはスタイルではなく
   // ダークモードか否かの有無だけにする
@@ -42,6 +54,7 @@ function App() {
         <ModeSwichBtn lightOrDark={lightOrDark} toggleVal={toggleLD} />
         <Main
           lightOrDark={lightOrDark}
+          items={allCounts}
         />
         <FixedMenu lightOrDark={lightOrDark} />
 

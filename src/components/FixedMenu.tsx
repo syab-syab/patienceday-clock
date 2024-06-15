@@ -53,6 +53,8 @@ const FixedMenu = (props: Props) => {
     setAddModalShow(!addModalShow)
   }
 
+  // console.log(addModalShow)
+
   const [historyModalShow, setHistoryModalShow] = useState<boolean>(false)
 
   const toggleHistoryModal = (): void => {

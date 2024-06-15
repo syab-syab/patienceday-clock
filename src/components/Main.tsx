@@ -2,9 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import TopMessage from './TopMessage'
 import CountSection from './CountSection'
+import { Deadline } from '../models/Deadline'
+import { Table } from 'dexie'
 
 type Props = {
-  lightOrDark: boolean
+  lightOrDark: boolean,
+  items?: Array<Deadline> | any
+  // items?: Array<Table<Deadline, any, Deadline>>
 }
 
 
@@ -13,8 +17,9 @@ type Props = {
 // 追加機能を実装してからやる 
 
 // 500pxでメディアクエリ
-const validateData: boolean = true
+// const validateData: boolean = true
 // const validateData: boolean = false
+
 
 const lightMode: string = `
 color: black;
@@ -47,9 +52,9 @@ text-align: center;
 // heightは画面全コンテンツが画面内に収まるように
 // 画面内スクロールはこっちで指定した方が良いかも
 // スクロールバーも消す(ブラウザごとに設定が異なる)
-const Wrapper = styled.main<{$isLightOrDark?: boolean}>`
+const Wrapper = styled.main<{$isLightOrDark?: boolean, $validItems?: Array<Deadline>}>`
 height: 90vh;
-${validateData ? scroll : nonScroll}
+${props => props.$validItems ? scroll : nonScroll}
 ${hiddenScrollBar}
 text-align: center;
 ${props => props.$isLightOrDark ? lightMode : darkMode};
@@ -84,8 +89,12 @@ font-size: 4.8rem;
 
 
 const Main = (props: Props) => {
+  // const validateData: Array<Deadline> = props.items
 
-  if(validateData) {
+  console.log(props.items)
+  // console.log("length=", validateData.length)
+
+  if(props.items) {
     return (
       <Wrapper $isLightOrDark={props.lightOrDark}>
         <CountSection lightOrDark={props.lightOrDark} />

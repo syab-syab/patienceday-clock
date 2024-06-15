@@ -51,10 +51,6 @@ const CountSection = (props: Props) => {
       {/* 本番環境ではmapで回すから現段階で真偽値は手打ち */}
       <CountItem onClickFunc={toggleModal} history={false} lightOrDark={props.lightOrDark} content="ビール" count="XXXX年XX月XX日XX時XX分" deadLine={false} />
       <CountItem onClickFunc={toggleModal} history={false} lightOrDark={props.lightOrDark} content="ビール" count="XXXX年XX月XX日XX時XX分" deadLine={true} />
-      <CountItem onClickFunc={toggleModal} history={false} lightOrDark={props.lightOrDark} content="ビール" count="XXXX年XX月XX日XX時XX分" deadLine={false} />
-      <CountItem onClickFunc={toggleModal} history={false} lightOrDark={props.lightOrDark} content="ビール" count="XXXX年XX月XX日XX時XX分" deadLine={false} />
-      <CountItem onClickFunc={toggleModal} history={false} lightOrDark={props.lightOrDark} content="ビール" count="XXXX年XX月XX日XX時XX分" deadLine={false} />
-      <CountItem onClickFunc={toggleModal} history={false} lightOrDark={props.lightOrDark} content="ビール" count="XXXX年XX月XX日XX時XX分" deadLine={false} />
 
       {/* <button onClick={toggleModal}>モーダルテスト</button> */}
       {/* CountItemModalのdeadLineは仮置き */}

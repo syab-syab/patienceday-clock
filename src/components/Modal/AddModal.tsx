@@ -2,12 +2,18 @@ import React from 'react'
 import styled from 'styled-components'
 import { useState } from 'react'
 import millisecondsTest from '../../functions/millisecondsTest'
+import dateCreate from '../../functions/dateCreate'
+import milliSecEdit from '../../functions/milliSecEdit'
+import { Deadline } from '../../models/Deadline'
+import { db } from '../../models/db'
 
 type Props = {
   show: boolean,
   lightOrDark: boolean,
   onClickFunc: () => void
 }
+
+const {deadline} = db
 
 
 // inputのスタイルが崩れているので
@@ -128,6 +134,9 @@ const selectHourValues: Array<string> = [
 
 const AddModal = (props: Props) => {
 
+  // const [show, setShow] = useState<boolean>(props.show)
+  // console.log(props.show)
+
   // 忍耐の内容(文字列)
   const [content, setContent] = useState<string>("")
   const contentHandleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -145,18 +154,56 @@ const AddModal = (props: Props) => {
     setDeadlineHour(e.target.value)
   }
 
+  // const addDeadline = async (e: React.FormEvent<HTMLFormElement>) => {
+    // デフォルトのリロードを防ぐ(？)
+    // e.preventDefault()
+    
+    // スタート時のミリ秒のした三桁を000にする
+    // const startMilli: number = milliSecEdit(Date.now())
+    // setStateが効かない
+    // setStartSec(String(tmpStart))
+    // console.log(startMilli)
+    // console.log(e)
+    // console.log(name, (Number(deadlineSec)*60000 + startMilli), startMilli, false, false)
+    // finishedがfalseのデータが一つでもあったら追加できないようにする
+    // await deadline.add({
+    //   name: name,
+    //   deadline: (Number(deadlineSec)*60000 + startMilli),
+    //   startSec: startMilli,
+    //   achievement: false,
+    //   finished: false,
+    // })
+    // setName('')
+    // setDeadlineSec('')
+
+    // alert("カウント開始")
+  // }
+
   // 新たにカウントを追加する
   // 編集や削除よりも優先する
-  const addCount = (): void => {
+  const addCount = async () => {
     // あとで追加のロジックを書く
+    // 日数と時間を足したミリ秒を算出
     const tmp: number = Number(deadlineDay) * 86400000 + Number(deadlineHour) * 3600000
     if (tmp <= 0 || content === "") {
       alert("１時間以上の時間の入力、または忍耐の内容を入力してください。")
     } else {
+      // スタート時のミリ秒のした三桁を000にする
+      const startMilli: number = milliSecEdit(Date.now())
+      // tmp+startMilli(現在のミリ秒)で期限の日付のミリ秒を出す
+      console.log(content, (tmp + startMilli), startMilli, 0, 0)
       alert(`${content}を${millisecondsTest(tmp, true)}耐える`)
+      await deadline.add({
+        name: content,
+        deadline: (tmp + startMilli),
+        startSec: startMilli,
+        achievement: 0,
+        finished: 0,
+      })
       setContent("")
       setDeadlineDay("0")
       setDeadlineHour("0")
+      // setShow(false)
     }
   }
 
