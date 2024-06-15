@@ -1,6 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import CountItem from '../CountItem'
+import { db } from '../../models/db'
+import { useLiveQuery } from 'dexie-react-hooks'
+import { Deadline } from '../../models/Deadline'
 
 type Props = {
   show: boolean,
@@ -92,9 +95,14 @@ const HistoryModal = (props: Props) => {
   // 本番では削除するかどうかを聞く
   // それと詳細を表示(confirmとかで)
   // 本番だと引数でidとかが必要になると思う
-  const historyDelete = (): void => {
-    alert('削除しますテスト')
-  }
+  // const historyDelete = (): void => {
+  //   alert('削除しますテスト')
+  // }
+
+  // finishedが0(まだ終了していないカウント)
+  const allCounts: Array<Deadline> | any = useLiveQuery(
+    () => db.deadline.where("finished").equals(1).toArray(),
+  [])
 
   if (props.show) {
     return (
@@ -106,6 +114,21 @@ const HistoryModal = (props: Props) => {
           </MessageHeading>
         </MessageWrapper>
         <ItemWrapper>
+          {
+            allCounts?.map((c: Deadline) => {
+              return (
+                <CountItem
+                  key={c.id}
+                  lightOrDark={props.lightOrDark}
+                  deadLine={c.achievement}
+                  history={true}
+                  content={c.name}
+                  count="XXXX年XX月XX日XX時XX分"
+                  itemKey={c.id}
+                />
+              )
+            })
+          }
         {/* <CountItem onClickFunc={historyDelete} history={true} lightOrDark={props.lightOrDark} content="ビール" count="XXXX年XX月XX日XX時XX分" deadLine={0} />
         <CountItem onClickFunc={historyDelete} history={true} lightOrDark={props.lightOrDark} content="ビール" count="XXXX年XX月XX日XX時XX分" deadLine={1} />
         <CountItem onClickFunc={historyDelete} history={true} lightOrDark={props.lightOrDark} content="ビール" count="XXXX年XX月XX日XX時XX分" deadLine={0} />

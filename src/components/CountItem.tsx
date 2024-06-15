@@ -7,6 +7,8 @@ import { FaThumbsUp } from "react-icons/fa";
 import { FaTrashAlt } from "react-icons/fa";
 import { db } from '../models/db';
 import { Deadline } from '../models/Deadline';
+import { useState } from 'react';
+import CountItemModal from './Modal/CountItemModal';
 
 type Props= {
   lightOrDark: boolean,
@@ -18,7 +20,9 @@ type Props= {
   count: string,
   // モーダルの開閉
   // onClickFunc: () => void
-  itemKey?: number
+  itemKey?: number,
+  // CountItemModalに中継
+  toDeadline?: string
 }
 
 // 履歴からでも呼び出せるようにする
@@ -110,20 +114,27 @@ const Icon = styled.div<{$isDeadLine?: number, $isLightOrDark?: boolean, $isHist
 
 
 const CountItem = (props: Props) => {
+  // モーダルを追加する
+  const [modalShow, setModalShow] = useState<boolean>(false)
+  // const [modalShow, setModalShow] = useState<boolean>(true)
 
-  // ここでconfirmを使ってCountItemModalの代役をする
-  const finishedToggle = (
-    index: number | any,
-  ) => {
-    // もしidから個別のカウントが出力出来て持ってくることができれば
-    // CountItemModalは復活
-    const tmp: Deadline | any = db.deadline.where("id").equals(index)
-    console.log(tmp)
+  const toggleModalOrHistoryDel = (id?: number): void => {
+    if (props.history) {
+      const res = window.confirm('削除してもよろしいですか？')
+      if (res) {
+        db.deadline.delete(id)
+        alert("削除しました。")
+      }
+    } else {
+      setModalShow(!modalShow)
+    }
+    
   }
+
 
   return (
     <>
-      <Item onClick={() => finishedToggle(props.itemKey)}>
+      <Item onClick={() => toggleModalOrHistoryDel(props.itemKey)}>
         <Icon $isDeadLine={props.deadLine} $isLightOrDark={props.lightOrDark} $isHistory={props.history}>
           {props.history ? <FaTrashAlt /> : props.deadLine ? <FaThumbsUp /> : <FaClock />}
         </Icon>
@@ -132,6 +143,16 @@ const CountItem = (props: Props) => {
           <Content $isDeadLine={props.deadLine} $isLightOrDark={props.lightOrDark} $isHistory={props.history}>{props.count}</Content>
         </Wrapper>
       </Item>
+      <CountItemModal
+        show={modalShow}
+        deadLine={props.deadLine}
+        lightOrDark={props.lightOrDark}
+        onClickFunc={toggleModalOrHistoryDel}
+        content={props.content}
+        count={props.count}
+        toDeadLine={props.toDeadline}
+        indexKey={props.itemKey}
+      />
     </>
 
   )

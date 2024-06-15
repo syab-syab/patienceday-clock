@@ -18,11 +18,12 @@ import { liveQuery } from 'dexie';
 function App() {
 
   // finishedが0(まだ終了していないカウント)
-  // const allCounts: Array<Deadline> | any = useLiveQuery(
-  //   () => db.deadline.where("finished").equals(0).toArray(),
-  // [])
-  const allCounts: Array<Deadline> | any = liveQuery(() => db.deadline.toArray())
-  console.log(allCounts.count)
+  const allCounts: Array<Deadline> | any = useLiveQuery(
+    () => db.deadline.where("finished").equals(0).toArray(),
+  [])
+
+  // const allCounts: Array<Deadline> | any = liveQuery(() => db.deadline.toArray())
+  // console.log(allCounts.count)
 
   // コンポーネントに渡すのはスタイルではなく
   // ダークモードか否かの有無だけにする

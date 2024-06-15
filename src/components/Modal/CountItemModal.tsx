@@ -1,16 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
+import { db } from '../../models/db'
 
 type Props = {
   show: boolean,
   lightOrDark: boolean,
-  // deadline(期限クリアの有無)に関しては今は仮置き
   deadLine: number,
   onClickFunc: () => void,
   content: string,
   count: string,
-  countKey?: number,
-  toDeadLine: string
+  indexKey?: number,
+  toDeadLine?: string
 }
 
 // レスポンシブはあとで
@@ -113,15 +113,21 @@ const MessageCount = styled.h2`
 
 const CountItemModal = (props: Props) => {
 
-  // console.log("id=", props.countKey)
-  // finishedの値を変更する(falseからtrueに)
-  // trueからfalseにはできないようにする
+  // finishedの値を変更する(0から1に)
+  // 1から0にはできないようにする
   // 優先度は中、追加機能を実装してから
-  const toggleStatus = (): void => {
+  const toggleStatus = async (index?: number) => {
     // 期限まで忍耐が続いていないものに対しては
     // 本当に終了するかどうかを尋ねること
-    // alert("カウントを終わらせます。id=")
-    alert(props.countKey)
+    // updateは更新したいデータのプライマリーキーを第一引数に指定し
+    // 第二引数に変更するプロパティとその値を指定する
+    const result = window.confirm("終了しますか？")
+    if(result) {
+      await db.deadline.update( index, {finished: 1 })
+      alert("終了しました。")
+    } else {
+      alert("引き続き頑張ってください。")
+    }
   }
 
   if (props.show) {
@@ -161,7 +167,7 @@ const CountItemModal = (props: Props) => {
             </>
           }
         </CountdownSpace>
-        <Button $isLightOrDark={props.lightOrDark} onClick={toggleStatus}>終了する</Button>
+        <Button $isLightOrDark={props.lightOrDark} onClick={() => toggleStatus(props.indexKey)}>終了する</Button>
         <Button $isLightOrDark={props.lightOrDark} onClick={props.onClickFunc}>閉じる</Button>
       </Modal>
     </Wrapper>

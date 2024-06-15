@@ -43,13 +43,7 @@ padding: 0 20rem;
 `
 
 const CountSection = (props: Props) => {
-  // モーダルを追加する
-  // const [modalShow, setModalShow] = useState<boolean>(false)
-  // const [modalShow, setModalShow] = useState<boolean>(true)
 
-  // const toggleModal = (): void => {
-  //   setModalShow(!modalShow)
-  // }
 
   const allCounts: Array<Deadline> | any = useLiveQuery(
     () => db.deadline.where("finished").equals(0).toArray(),
@@ -75,35 +69,21 @@ const CountSection = (props: Props) => {
 
   return (
     <Wrapper>
-      {/* 本番環境ではmapで回すから現段階で真偽値は手打ち */}
       {
         allCounts?.map((c: Deadline) => {
           const nowCounting: string = millisecondsTest(milliSecEdit(current - c.startSec))
           const toDeadLine: string = millisecondsTest(milliSecEdit(c.deadline - current))
           return (
-          <div key={c.id}>
             <CountItem
-              // key={c.id}
-              // onClickFunc={toggleModal}
+              key={c.id}
               itemKey={c.id}
               history={false}
               lightOrDark={props.lightOrDark}
               content={c.name}
               count={nowCounting}
               deadLine={c.achievement}
+              toDeadline={toDeadLine}
             />
-            {/* やむを得ずモーダル廃止 */}
-              {/* <CountItemModal
-                show={modalShow}
-                deadLine={c.achievement}
-                lightOrDark={props.lightOrDark}
-                onClickFunc={toggleModal}
-                content={c.name}
-                count={nowCounting}
-                toDeadLine={toDeadLine}
-                countKey={c.id}
-              /> */}
-            </div>
           )
         })
       }
