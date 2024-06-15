@@ -113,6 +113,7 @@ const MessageCount = styled.h2`
 
 const CountItemModal = (props: Props) => {
 
+  // console.log("id=", props.countKey)
   // finishedの値を変更する(falseからtrueに)
   // trueからfalseにはできないようにする
   // 優先度は中、追加機能を実装してから

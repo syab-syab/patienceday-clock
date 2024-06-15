@@ -5,6 +5,8 @@ import styled from 'styled-components'
 import { FaClock } from "react-icons/fa6";
 import { FaThumbsUp } from "react-icons/fa";
 import { FaTrashAlt } from "react-icons/fa";
+import { db } from '../models/db';
+import { Deadline } from '../models/Deadline';
 
 type Props= {
   lightOrDark: boolean,
@@ -15,7 +17,8 @@ type Props= {
   content: string,
   count: string,
   // モーダルの開閉
-  onClickFunc: () => void
+  // onClickFunc: () => void
+  itemKey?: number
 }
 
 // 履歴からでも呼び出せるようにする
@@ -108,9 +111,19 @@ const Icon = styled.div<{$isDeadLine?: number, $isLightOrDark?: boolean, $isHist
 
 const CountItem = (props: Props) => {
 
+  // ここでconfirmを使ってCountItemModalの代役をする
+  const finishedToggle = (
+    index: number | any,
+  ) => {
+    // もしidから個別のカウントが出力出来て持ってくることができれば
+    // CountItemModalは復活
+    const tmp: Deadline | any = db.deadline.where("id").equals(index)
+    console.log(tmp)
+  }
+
   return (
     <>
-      <Item onClick={props.onClickFunc}>
+      <Item onClick={() => finishedToggle(props.itemKey)}>
         <Icon $isDeadLine={props.deadLine} $isLightOrDark={props.lightOrDark} $isHistory={props.history}>
           {props.history ? <FaTrashAlt /> : props.deadLine ? <FaThumbsUp /> : <FaClock />}
         </Icon>
