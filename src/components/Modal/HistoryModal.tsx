@@ -4,6 +4,8 @@ import CountItem from '../CountItem'
 import { db } from '../../models/db'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { Deadline } from '../../models/Deadline'
+import milliSecEdit from '../../functions/milliSecEdit'
+import millisecondsTest from '../../functions/millisecondsTest'
 
 type Props = {
   show: boolean,
@@ -123,18 +125,12 @@ const HistoryModal = (props: Props) => {
                   deadLine={c.achievement}
                   history={true}
                   content={c.name}
-                  count="XXXX年XX月XX日XX時XX分"
+                  count={millisecondsTest(milliSecEdit(c.finishedSec - c.startSec))}
                   itemKey={c.id}
                 />
               )
             })
           }
-        {/* <CountItem onClickFunc={historyDelete} history={true} lightOrDark={props.lightOrDark} content="ビール" count="XXXX年XX月XX日XX時XX分" deadLine={0} />
-        <CountItem onClickFunc={historyDelete} history={true} lightOrDark={props.lightOrDark} content="ビール" count="XXXX年XX月XX日XX時XX分" deadLine={1} />
-        <CountItem onClickFunc={historyDelete} history={true} lightOrDark={props.lightOrDark} content="ビール" count="XXXX年XX月XX日XX時XX分" deadLine={0} />
-        <CountItem onClickFunc={historyDelete} history={true} lightOrDark={props.lightOrDark} content="ビール" count="XXXX年XX月XX日XX時XX分" deadLine={0} />
-        <CountItem onClickFunc={historyDelete} history={true} lightOrDark={props.lightOrDark} content="ビール" count="XXXX年XX月XX日XX時XX分" deadLine={0} />
-        <CountItem onClickFunc={historyDelete} history={true} lightOrDark={props.lightOrDark} content="ビール" count="XXXX年XX月XX日XX時XX分" deadLine={0} /> */}
         </ItemWrapper>
         <Button onClick={props.onClickFunc}>閉じる</Button>
       </Modal>

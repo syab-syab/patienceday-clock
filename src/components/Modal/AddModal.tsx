@@ -10,7 +10,8 @@ import { db } from '../../models/db'
 type Props = {
   show: boolean,
   lightOrDark: boolean,
-  onClickFunc: () => void
+  onClickFunc: () => void,
+  toggleState: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const {deadline} = db
@@ -154,33 +155,7 @@ const AddModal = (props: Props) => {
     setDeadlineHour(e.target.value)
   }
 
-  // const addDeadline = async (e: React.FormEvent<HTMLFormElement>) => {
-    // デフォルトのリロードを防ぐ(？)
-    // e.preventDefault()
-    
-    // スタート時のミリ秒のした三桁を000にする
-    // const startMilli: number = milliSecEdit(Date.now())
-    // setStateが効かない
-    // setStartSec(String(tmpStart))
-    // console.log(startMilli)
-    // console.log(e)
-    // console.log(name, (Number(deadlineSec)*60000 + startMilli), startMilli, false, false)
-    // finishedがfalseのデータが一つでもあったら追加できないようにする
-    // await deadline.add({
-    //   name: name,
-    //   deadline: (Number(deadlineSec)*60000 + startMilli),
-    //   startSec: startMilli,
-    //   achievement: false,
-    //   finished: false,
-    // })
-    // setName('')
-    // setDeadlineSec('')
-
-    // alert("カウント開始")
-  // }
-
   // 新たにカウントを追加する
-  // 編集や削除よりも優先する
   const addCount = async () => {
     // あとで追加のロジックを書く
     // 日数と時間を足したミリ秒を算出
@@ -199,11 +174,12 @@ const AddModal = (props: Props) => {
         startSec: startMilli,
         achievement: 0,
         finished: 0,
+        finishedSec: 0
       })
       setContent("")
       setDeadlineDay("0")
       setDeadlineHour("0")
-      // setShow(false)
+      props.toggleState(false)
     }
   }
 
@@ -216,7 +192,6 @@ const AddModal = (props: Props) => {
             <MessageHeading>
               何を我慢する？
             </MessageHeading>
-            <p>{deadlineDay}</p>
             <ContentInput type='text' value={content} onChange={contentHandleChange} $isLightOrDark={props.lightOrDark} />
             <MessageSub>
               どのくらい我慢する？
@@ -233,7 +208,6 @@ const AddModal = (props: Props) => {
                 })
               }
             </HourSelect>
-            
             <label>時間</label>
           </MessageWrapper>
           <StartButton onClick={addCount}>始める</StartButton>

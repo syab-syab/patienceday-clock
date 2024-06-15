@@ -123,7 +123,7 @@ const CountItemModal = (props: Props) => {
     // 第二引数に変更するプロパティとその値を指定する
     const result = window.confirm("終了しますか？")
     if(result) {
-      await db.deadline.update( index, {finished: 1 })
+      await db.deadline.update( index, {finished: 1 , finishedSec: Date.now()})
       alert("終了しました。")
     } else {
       alert("引き続き頑張ってください。")

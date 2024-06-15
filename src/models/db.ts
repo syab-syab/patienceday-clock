@@ -24,7 +24,7 @@ export class Count extends Dexie {
       // 先に定義しておいたinterfaceにカラム名を同じくする必要がある？
       // todos: '++id, task, completed',
       // カウントの期限テスト
-      deadline: '++id, name, deadline, startSec, achievement, finished'
+      deadline: '++id, name, deadline, startSec, achievement, finished, finishedSec'
     });
   }
 }

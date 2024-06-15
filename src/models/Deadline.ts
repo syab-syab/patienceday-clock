@@ -16,10 +16,10 @@ export type Deadline = {
   // 終了した(true)のモノは履歴として残し、表示できるようにしたい
   // 真偽値ではなく数値で0か1にした方がいいかもしれない
   // finished: boolean
-  finished: number
+  finished: number,
   // finishedを1にした時間(カウントを終わらせた時間)を
   // ミリ秒でupdateする
   // 初期値は0でいい
   // 履歴で記録を表示するのに必要
-  // finishedSec: number
+  finishedSec: number
 }
