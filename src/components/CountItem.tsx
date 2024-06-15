@@ -8,7 +8,7 @@ import { FaTrashAlt } from "react-icons/fa";
 
 type Props= {
   lightOrDark: boolean,
-  deadLine: boolean,
+  deadLine: number,
   // 参照しているのがhistoryのモーダルか否か
   history: boolean,
   // 期限or記録
@@ -71,7 +71,7 @@ const Wrapper = styled.div`
 
 // 下の二つにエラー出てるけど後回し
 // 忍耐の内容
-const Heading = styled.p<{$isDeadLine?: boolean, $isLightOrDark?: boolean, $isHistory?: boolean}>`
+const Heading = styled.p<{$isDeadLine?: number, $isLightOrDark?: boolean, $isHistory?: boolean}>`
   ${
     props => props.$isDeadLine ? succeedColor : props.$isHistory ? historyContentColor : props.$isLightOrDark ? lightModeContentColor : darkModeContentColor
   }
@@ -83,7 +83,7 @@ const Heading = styled.p<{$isDeadLine?: boolean, $isLightOrDark?: boolean, $isHi
 `
 
 // 忍耐の期限(履歴では記録)
-const Content = styled.p<{$isDeadLine?: boolean, $isLightOrDark?: boolean, $isHistory?: boolean}>`
+const Content = styled.p<{$isDeadLine?: number, $isLightOrDark?: boolean, $isHistory?: boolean}>`
   ${
     props => props.$isDeadLine ? succeedColor : props.$isHistory ? historyContentColor : props.$isLightOrDark ? lightModeContentColor : darkModeContentColor
   }
@@ -93,7 +93,7 @@ const Content = styled.p<{$isDeadLine?: boolean, $isLightOrDark?: boolean, $isHi
   padding: 1rem 0;
 `
 
-const Icon = styled.div<{$isDeadLine?: boolean, $isLightOrDark?: boolean, $isHistory?: boolean}>`
+const Icon = styled.div<{$isDeadLine?: number, $isLightOrDark?: boolean, $isHistory?: boolean}>`
   ${
     props =>
       props.$isDeadLine ? succeedColor : props.$isHistory ? historyIconColor : props.$isLightOrDark ? lightModeIconColor : darkModeIconColor

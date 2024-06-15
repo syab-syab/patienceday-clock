@@ -106,12 +106,12 @@ const HistoryModal = (props: Props) => {
           </MessageHeading>
         </MessageWrapper>
         <ItemWrapper>
-        <CountItem onClickFunc={historyDelete} history={true} lightOrDark={props.lightOrDark} content="ビール" count="XXXX年XX月XX日XX時XX分" deadLine={false} />
-        <CountItem onClickFunc={historyDelete} history={true} lightOrDark={props.lightOrDark} content="ビール" count="XXXX年XX月XX日XX時XX分" deadLine={true} />
-        <CountItem onClickFunc={historyDelete} history={true} lightOrDark={props.lightOrDark} content="ビール" count="XXXX年XX月XX日XX時XX分" deadLine={false} />
-        <CountItem onClickFunc={historyDelete} history={true} lightOrDark={props.lightOrDark} content="ビール" count="XXXX年XX月XX日XX時XX分" deadLine={false} />
-        <CountItem onClickFunc={historyDelete} history={true} lightOrDark={props.lightOrDark} content="ビール" count="XXXX年XX月XX日XX時XX分" deadLine={false} />
-        <CountItem onClickFunc={historyDelete} history={true} lightOrDark={props.lightOrDark} content="ビール" count="XXXX年XX月XX日XX時XX分" deadLine={false} />
+        {/* <CountItem onClickFunc={historyDelete} history={true} lightOrDark={props.lightOrDark} content="ビール" count="XXXX年XX月XX日XX時XX分" deadLine={0} />
+        <CountItem onClickFunc={historyDelete} history={true} lightOrDark={props.lightOrDark} content="ビール" count="XXXX年XX月XX日XX時XX分" deadLine={1} />
+        <CountItem onClickFunc={historyDelete} history={true} lightOrDark={props.lightOrDark} content="ビール" count="XXXX年XX月XX日XX時XX分" deadLine={0} />
+        <CountItem onClickFunc={historyDelete} history={true} lightOrDark={props.lightOrDark} content="ビール" count="XXXX年XX月XX日XX時XX分" deadLine={0} />
+        <CountItem onClickFunc={historyDelete} history={true} lightOrDark={props.lightOrDark} content="ビール" count="XXXX年XX月XX日XX時XX分" deadLine={0} />
+        <CountItem onClickFunc={historyDelete} history={true} lightOrDark={props.lightOrDark} content="ビール" count="XXXX年XX月XX日XX時XX分" deadLine={0} /> */}
         </ItemWrapper>
         <Button onClick={props.onClickFunc}>閉じる</Button>
       </Modal>
