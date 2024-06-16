@@ -82,9 +82,7 @@ const Button = styled.div<{$isLightOrDark?: boolean}>`
   margin-bottom: 1rem;
 `
 
-// 
 const CountdownSpace = styled.div<{$isDeadLine?: number, $isLightOrDark?: boolean}>`
-
   border-radius: 0.8rem;
   padding: 1rem;
   margin: 1rem 0;
@@ -141,12 +139,6 @@ const CountItemModal = (props: Props) => {
           <MessageSub>
             を今まで
           </MessageSub>
-          {/* <MessageCount>
-            XX日
-          </MessageCount>
-          <MessageCount>
-            XX時間XX分XX秒
-          </MessageCount> */}
           <MessageCount>
             {props.count}
           </MessageCount>
@@ -159,8 +151,6 @@ const CountItemModal = (props: Props) => {
             <><MessageCount>目標達成</MessageCount><MessageCount>おめでとう！</MessageCount></> : 
             <>
               <MessageSub>目標まであと</MessageSub>
-              {/* <MessageCount>XX日</MessageCount>
-              <MessageCount>XX時間XX分XX秒</MessageCount> */}
               <MessageCount>
                 {props.toDeadLine}
               </MessageCount>

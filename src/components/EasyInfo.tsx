@@ -8,15 +8,15 @@ type Props = {
 
 // 条件分岐でタグを選択
 const InfoHeader = styled.header`
-background: black;
-color: #FDFFE2;
-text-align: center;
+  background: black;
+  color: #FDFFE2;
+  text-align: center;
 `
 
 const InfoFooter = styled.footer`
-background: black;
-color: #FDFFE2;
-text-align: center;
+  background: black;
+  color: #FDFFE2;
+  text-align: center;
 `
 
 // ヘッダーとフッター用

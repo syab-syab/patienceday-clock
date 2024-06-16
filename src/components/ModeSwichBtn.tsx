@@ -8,8 +8,8 @@ type Props = {
 
 // 外に定義してみる
 const lightMode: string = `
-color: #FDFFE2;
-background: #223A70;
+  color: #FDFFE2;
+  background: #223A70;
 `
 
 const darkMode: string = `

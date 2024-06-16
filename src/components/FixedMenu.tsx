@@ -9,40 +9,40 @@ type Props = {
 }
 
 const lightMode: string = `
-color: #FDFFE2;
-background: #223A70;
-&:hover {
-  background: #83B4FF;
-}
+  color: #FDFFE2;
+  background: #223A70;
+  &:hover {
+    background: #83B4FF;
+  }
 `
 
 const darkMode: string = `
-color: black;
-background: #FDFFE2;
-&:hover {
-  background: #F5FFA2;
-}
+  color: black;
+  background: #FDFFE2;
+  &:hover {
+    background: #F5FFA2;
+  }
 `
 
 const Menu = styled.div`
-display: flex;
-justify-content: space-around;
-align-items: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 `
 
 const MenuItem = styled.div<{$isLightOrDark?: boolean}>`
-padding: 1rem 0;
-vertical-align: center;
-flex-direction: column;
-flex-grow: 1;
-${props => props.$isLightOrDark ? lightMode : darkMode};
-border: solid 1px;
-font-size: 3rem;
-@media (max-width: 500px) {
-  font-size: 2rem;
-  padding: 2rem 0;
-  font-weight: bold;
-}
+  padding: 1rem 0;
+  vertical-align: center;
+  flex-direction: column;
+  flex-grow: 1;
+  ${props => props.$isLightOrDark ? lightMode : darkMode};
+  border: solid 1px;
+  font-size: 3rem;
+  @media (max-width: 500px) {
+    font-size: 2rem;
+    padding: 2rem 0;
+    font-weight: bold;
+  }
 `
 
 const FixedMenu = (props: Props) => {
@@ -52,8 +52,6 @@ const FixedMenu = (props: Props) => {
   const toggleAddModal = (): void => {
     setAddModalShow(!addModalShow)
   }
-
-  // console.log(addModalShow)
 
   const [historyModalShow, setHistoryModalShow] = useState<boolean>(false)
 

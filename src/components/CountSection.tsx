@@ -16,30 +16,23 @@ type Props = {
 
 const { deadline } = db
 
-// const lightMode: string = `
-// background: #5A72A0;
-// `
-
-// const darkMode: string = `
-// background: #FDFFE2;
-// `
 
 // 900pxくらいでpaddingが限界
 // とりあえずメディアクエリは暫定
 const Wrapper = styled.section`
-padding: 0 20rem;
-@media (max-width: 900px) {
-  padding: 0 10rem;
-}
-@media (max-width: 800px) {
-  padding: 0 7rem;
-}
-@media (max-width: 700px) {
-  padding: 0 6rem;
-}
-@media (max-width: 500px) {
-  padding: 0 3rem;
-}
+  padding: 0 20rem;
+  @media (max-width: 900px) {
+    padding: 0 10rem;
+  }
+  @media (max-width: 800px) {
+    padding: 0 7rem;
+  }
+  @media (max-width: 700px) {
+    padding: 0 6rem;
+  }
+  @media (max-width: 500px) {
+    padding: 0 3rem;
+  }
 `
 
 const CountSection = (props: Props) => {
@@ -55,6 +48,7 @@ const CountSection = (props: Props) => {
       // セットアップ処理
       const count = setInterval(() => {
         setCurrent(Date.now())
+        // 期限を現在のミリ秒が過ぎたらachivementを更新(達成済みにする)
         allCounts?.map(async (item: Deadline | any) => {
           if(!(item.achievement) && current > item.deadline) {
             await deadline.update(item.id, {achievement: 1})
@@ -65,7 +59,7 @@ const CountSection = (props: Props) => {
       // クリーンアップ処理
       // return無しだと挙動がおかしくなるから必要
       return () => clearInterval(count)
-    }, [current])
+    }, [current, allCounts])
 
   return (
     <Wrapper>

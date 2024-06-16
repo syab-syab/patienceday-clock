@@ -2,9 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useState } from 'react'
 import millisecondsTest from '../../functions/millisecondsTest'
-import dateCreate from '../../functions/dateCreate'
 import milliSecEdit from '../../functions/milliSecEdit'
-import { Deadline } from '../../models/Deadline'
 import { db } from '../../models/db'
 
 type Props = {

@@ -1,12 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-// import CountItemModal from './Modal/CountItemModal'
-// import { useState } from 'react'
 import { FaClock } from "react-icons/fa6";
 import { FaThumbsUp } from "react-icons/fa";
 import { FaTrashAlt } from "react-icons/fa";
 import { db } from '../models/db';
-import { Deadline } from '../models/Deadline';
 import { useState } from 'react';
 import CountItemModal from './Modal/CountItemModal';
 
@@ -19,7 +16,6 @@ type Props= {
   content: string,
   count: string,
   // モーダルの開閉
-  // onClickFunc: () => void
   itemKey?: number,
   // CountItemModalに中継
   toDeadline?: string
@@ -29,7 +25,7 @@ type Props= {
 
 // 外に定義してみる
 const lightModeIconColor: string = `
-background: #FFFE71;
+  background: #FFFE71;
 `
 
 const lightModeContentColor: string = `
@@ -37,15 +33,15 @@ background: #F5FFA2;
 `
 
 const darkModeIconColor: string = `
-background: #5A72A0;
+  background: #5A72A0;
 `
 
 const darkModeContentColor: string = `
-background: #97A0B2;
+  background: #97A0B2;
 `
 
 const succeedColor: string = `
-background: linear-gradient(to right, #FF3131, #FF914D);
+  background: linear-gradient(to right, #FF3131, #FF914D);
 `
 
 const historyIconColor: string = `
@@ -59,16 +55,16 @@ const historyContentColor: string =`
 
 // 親コンポーネントのメディアクエリを打ち消し
 const Item = styled.div`
-display: flex;
-border: 0.1rem solid black;
-font-size: 5rem;
-margin-bottom: 4rem;
-color: black;
-@media (max-width: 500px) {
-  font-size: 3.7rem;
-  font-weight: normal;
-  margin-bottom: 2rem;
-}
+  display: flex;
+  border: 0.1rem solid black;
+  font-size: 5rem;
+  margin-bottom: 4rem;
+  color: black;
+  @media (max-width: 500px) {
+    font-size: 3.7rem;
+    font-weight: normal;
+    margin-bottom: 2rem;
+  }
 `
 
 const Wrapper = styled.div`

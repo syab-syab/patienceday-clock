@@ -3,99 +3,89 @@ import styled from 'styled-components'
 import TopMessage from './TopMessage'
 import CountSection from './CountSection'
 import { Deadline } from '../models/Deadline'
-import { Table } from 'dexie'
 
 type Props = {
   lightOrDark: boolean,
-  items?: Array<Deadline> | any
-  // items?: Array<Table<Deadline, any, Deadline>>
+  unfinished: number | any
 }
 
-
-// 期限まで我慢したら自動的にfinishedがtureになるような関数(?)を
-// コンポーネントのどれかに定義する
-// 追加機能を実装してからやる 
-
 // 500pxでメディアクエリ
-// const validateData: boolean = true
-// const validateData: boolean = false
 
 
 const lightMode: string = `
-color: black;
-background: #FDFFE2;
+  color: black;
+  background: #FDFFE2;
 `
 
 const darkMode: string = `
-color: #FDFFE2;
-background: #223A70;
+  color: #FDFFE2;
+  background: #223A70;
 `
 
 const scroll: string = `
-overflow-y: scroll;
+  overflow-y: scroll;
 `
 
 const nonScroll: string = `
-overflow-y: visible;
+  overflow-y: visible;
 `
 
 const hiddenScrollBar: string =`
-&::-webkit-scrollbar{
-  display:none;
-}
--ms-overflow-style: none;
-scrollbar-width: none;
-
-text-align: center;
+  &::-webkit-scrollbar{
+    display:none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  text-align: center;
 `
 
 // heightは画面全コンテンツが画面内に収まるように
 // 画面内スクロールはこっちで指定した方が良いかも
 // スクロールバーも消す(ブラウザごとに設定が異なる)
 const Wrapper = styled.main<{$isLightOrDark?: boolean, $validItems?: Array<Deadline>}>`
-height: 90vh;
-${props => props.$validItems ? scroll : nonScroll}
-${hiddenScrollBar}
-text-align: center;
-${props => props.$isLightOrDark ? lightMode : darkMode};
-margin: 0 auto;
-padding: 5rem 0 5rem;
-@media (max-width: 500px) {
-  height: 85vh;
-  font-size: 3.7rem;
-  font-weight: bold;
-}
+  height: 90vh;
+  ${props => props.$validItems ? scroll : nonScroll}
+  ${hiddenScrollBar}
+  text-align: center;
+  ${props => props.$isLightOrDark ? lightMode : darkMode};
+  margin: 0 auto;
+  padding: 5rem 0 5rem;
+  @media (max-width: 500px) {
+    height: 85vh;
+    font-size: 3.7rem;
+    font-weight: bold;
+  }
 `
 
 const MainTitle = styled.h1`
-font-weight: normal;
-margin: 0 auto;
-font-size: 7.2rem;
-@media (max-width: 500px) {
-  font-size: 3.7rem;
-  font-weight: bold;
-}
+  font-weight: normal;
+  margin: 0 auto;
+  font-size: 7.2rem;
+  @media (max-width: 500px) {
+    font-size: 3.7rem;
+    font-weight: bold;
+  }
 `
 
 const SubTitle = styled.h2`
-font-weight: normal;
-margin: 0 auto;
-font-size: 4.8rem;
-@media (max-width: 500px) {
-  font-size: 2.4rem;
-  font-weight: bold;
-}
+  font-weight: normal;
+  margin: 0 auto;
+  font-size: 4.8rem;
+  @media (max-width: 500px) {
+    font-size: 2.4rem;
+    font-weight: bold;
+  }
 `
 
 
 const Main = (props: Props) => {
   // const validateData: Array<Deadline> = props.items
 
-  console.log(props.items)
+  // console.log(props.items)
   // Dexie.js固有の関数countで数が取ってこれそうな感じがするけどうまくいかない
   // console.log("length=", validateData.length)
 
-  if(props.items) {
+  if(props.unfinished) {
     return (
       <Wrapper $isLightOrDark={props.lightOrDark}>
         <CountSection lightOrDark={props.lightOrDark} />
