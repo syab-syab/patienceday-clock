@@ -45,7 +45,6 @@ const Wrapper = styled.div`
   width:100%;
   height:100%;
   background-color:rgba(0,0,0,0.5);
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -88,6 +87,11 @@ const CountdownSpace = styled.div<{$isDeadLine?: number, $isLightOrDark?: boolea
   padding: 1rem;
   margin: 1rem 0;
   ${props => props.$isDeadLine ? succeedBGColor : props.$isLightOrDark ? lightModeCDSColor : darkModeCDSColor}
+`
+
+const AlmostWrapper = styled.div`
+  height: 70vh;
+  overflow-y: scroll;
 `
 
 const MessageWrapper = styled.div`
@@ -133,31 +137,33 @@ const CountItemModal = (props: Props) => {
     return (
     <Wrapper>
       <Modal $isDeadLine={props.deadLine} $isLightOrDark={props.lightOrDark}>
-        <MessageWrapper>
-          <MessageHeading>
-            {props.content}
-          </MessageHeading>
-          <MessageSub>
-            を今まで
-          </MessageSub>
-          <MessageCount>
-            {props.count}
-          </MessageCount>
-          <MessageSub>
-            耐えている！
-          </MessageSub>
-        </MessageWrapper>
-        <CountdownSpace $isDeadLine={props.deadLine} $isLightOrDark={props.lightOrDark}>
-          {props.deadLine ? 
-            <><MessageCount>目標達成</MessageCount><MessageCount>おめでとう！</MessageCount></> : 
-            <>
-              <MessageSub>目標まであと</MessageSub>
-              <MessageCount>
-                {props.toDeadLine}
-              </MessageCount>
-            </>
-          }
-        </CountdownSpace>
+        <AlmostWrapper>
+          <MessageWrapper>
+            <MessageHeading>
+              {props.content}
+            </MessageHeading>
+            <MessageSub>
+              を今まで
+            </MessageSub>
+            <MessageCount>
+              {props.count}
+            </MessageCount>
+            <MessageSub>
+              耐えている！
+            </MessageSub>
+          </MessageWrapper>
+          <CountdownSpace $isDeadLine={props.deadLine} $isLightOrDark={props.lightOrDark}>
+            {props.deadLine ? 
+              <><MessageCount>目標達成</MessageCount><MessageCount>おめでとう！</MessageCount></> : 
+              <>
+                <MessageSub>目標まであと</MessageSub>
+                <MessageCount>
+                  {props.toDeadLine}
+                </MessageCount>
+              </>
+            }
+          </CountdownSpace>
+        </AlmostWrapper>
         <Button $isLightOrDark={props.lightOrDark} onClick={() => toggleStatus(props.indexKey)}>終了する</Button>
         <Button $isLightOrDark={props.lightOrDark} onClick={props.onClickFunc}>閉じる</Button>
       </Modal>

@@ -7,6 +7,7 @@ type Props = {
 
 const backgroundLightMode: string = `
   background: #5A72A0;
+  color: white;
 `
 
 const backgroundDarkMode: string = `
