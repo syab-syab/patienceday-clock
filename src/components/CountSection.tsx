@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import CountItem from './CountItem'
-import CountItemModal from './Modal/CountItemModal'
 import { useState } from 'react'
 import { db } from '../models/db'
 import { useLiveQuery } from 'dexie-react-hooks'
@@ -82,8 +81,6 @@ const CountSection = (props: Props) => {
         })
       }
 
-      {/* CountItemModalのdeadLineは仮置き */}
-      {/* <CountItemModal show={modalShow} deadLine={false} lightOrDark={props.lightOrDark} onClickFunc={toggleModal} /> */}
     </Wrapper>
   )
 }

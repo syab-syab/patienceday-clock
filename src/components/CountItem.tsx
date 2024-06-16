@@ -112,7 +112,6 @@ const Icon = styled.div<{$isDeadLine?: number, $isLightOrDark?: boolean, $isHist
 const CountItem = (props: Props) => {
   // モーダルを追加する
   const [modalShow, setModalShow] = useState<boolean>(false)
-  // const [modalShow, setModalShow] = useState<boolean>(true)
 
   const toggleModalOrHistoryDel = (id?: number): void => {
     if (props.history) {
@@ -135,8 +134,12 @@ const CountItem = (props: Props) => {
           {props.history ? <FaTrashAlt /> : props.deadLine ? <FaThumbsUp /> : <FaClock />}
         </Icon>
         <Wrapper>
-          <Heading $isDeadLine={props.deadLine} $isLightOrDark={props.lightOrDark} $isHistory={props.history}>{props.content}</Heading>
-          <Content $isDeadLine={props.deadLine} $isLightOrDark={props.lightOrDark} $isHistory={props.history}>{props.count}</Content>
+          <Heading $isDeadLine={props.deadLine} $isLightOrDark={props.lightOrDark} $isHistory={props.history}>
+            {props.history ? `${props.content} を耐えた` : `${props.content}`}
+          </Heading>
+          <Content $isDeadLine={props.deadLine} $isLightOrDark={props.lightOrDark} $isHistory={props.history}>
+            {props.history ? `記録: ${props.count}`: props.count}
+          </Content>
         </Wrapper>
       </Item>
       <CountItemModal

@@ -35,49 +35,47 @@ const darkModeBGColor: string = `
 
 
 const Wrapper = styled.div`
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background-color:rgba(0,0,0,0.5);
-
-display: flex;
-align-items: center;
-justify-content: center;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background-color:rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 const Modal = styled.div<{$isLightOrDark?: boolean}>`
-color: ${props =>  props.$isLightOrDark ? 'black' : '#FDFFE2'};
-z-index:2;
-width:50%;
-padding: 1em;
-${props =>  props.$isLightOrDark ? lightModeBGColor : darkModeBGColor}
-border: 0.2rem black solid;
-border-radius: 0.8rem;
-@media (max-width: 1000px) {
-  width: 70%;
-}
-@media (max-width: 800px) {
-  width: 80%;
-}
-@media (max-width: 700px) {
-  width: 90%;
-}
-@media (max-width: 500px) {
-  width: 95%;
-  padding: 0.3em;
-}
+  color: ${props =>  props.$isLightOrDark ? 'black' : '#FDFFE2'};
+  z-index:2;
+  width:50%;
+  padding: 1em;
+  ${props =>  props.$isLightOrDark ? lightModeBGColor : darkModeBGColor}
+  border: 0.2rem black solid;
+  border-radius: 0.8rem;
+  @media (max-width: 1000px) {
+    width: 70%;
+  }
+  @media (max-width: 800px) {
+    width: 80%;
+  }
+  @media (max-width: 700px) {
+    width: 90%;
+  }
+  @media (max-width: 500px) {
+    width: 95%;
+    padding: 0.3em;
+  }
 `
 
 const CloseButton = styled.div`
-font-size: 3rem;
-width: 15rem;
-margin: 0 auto;
-border: 0.2rem black solid;
-border-radius: 0.8rem;
-margin-bottom: 1rem;
-
+  font-size: 3rem;
+  width: 15rem;
+  margin: 0 auto;
+  border: 0.2rem black solid;
+  border-radius: 0.8rem;
+  margin-bottom: 1rem;
 `
 
 const StartButton = styled.div`
@@ -90,9 +88,9 @@ const StartButton = styled.div`
 `
 
 const MessageWrapper = styled.div`
-padding: 1rem 3rem;
-margin: 0;
-font-size: 4rem;
+  padding: 1rem 3rem;
+  margin: 0;
+  font-size: 4rem;
 `
 
 const MessageHeading = styled.h1`
@@ -109,19 +107,27 @@ const MessageSub = styled.p`
 const ContentInput = styled.input<{$isLightOrDark?: boolean}>`
   margin: 1rem;
   border: 0.1rem solid;
-  width: 100%;
-  height: 100%;
+  font-size: 3rem;
+  @media (max-width: 500px) {
+    width: 20rem;
+  }
+  
   ${props => props.$isLightOrDark ? lightModeBGColor : darkModeBGColor}
 `
 const DayInput = styled.input<{$isLightOrDark?: boolean}>`
   margin: 1rem;
   border: 0.1rem solid;
+  height: 3rem;
+  font-size: 3rem;
+  width: 10rem;
   ${props => props.$isLightOrDark ? lightModeBGColor : darkModeBGColor}
 `
 
 const HourSelect = styled.select<{$isLightOrDark?: boolean}>`
   margin: 1rem;
   border: 0.1rem solid;
+  font-size: 3rem;
+  width: 10rem;
   ${props => props.$isLightOrDark ? lightModeBGColor : darkModeBGColor}
 `
 

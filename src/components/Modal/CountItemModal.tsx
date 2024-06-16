@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { db } from '../../models/db'
 
+
 type Props = {
   show: boolean,
   lightOrDark: boolean,
