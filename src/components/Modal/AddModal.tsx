@@ -117,7 +117,7 @@ const ContentInput = styled.input<{$isLightOrDark?: boolean}>`
 const DayInput = styled.input<{$isLightOrDark?: boolean}>`
   margin: 1rem;
   border: 0.1rem solid;
-  height: 3rem;
+  height: 3.5rem;
   font-size: 3rem;
   width: 10rem;
   ${props => props.$isLightOrDark ? lightModeBGColor : darkModeBGColor}
