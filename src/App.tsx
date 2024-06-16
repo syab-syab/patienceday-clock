@@ -10,9 +10,6 @@ import { db } from './models/db';
 import { useLiveQuery } from 'dexie-react-hooks'
 
 
-// const {deadLine} = db
-
-
 function App() {
 
   // 一瞬タイトルが出てしまう現象をどうにかできそうならする
