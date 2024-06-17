@@ -132,8 +132,6 @@ const SucceedMessage: Array<string> = [
 ]
 
 const CountItemModal = (props: Props) => {
-  console.log(SucceedMessage[Math.floor(Math.random() * SucceedMessage.length)])
-  // console.log(Math.floor(Math.random() * SucceedMessage.length))
 
   // finishedの値を変更する(0から1に)
   // 1から0にはできないようにする

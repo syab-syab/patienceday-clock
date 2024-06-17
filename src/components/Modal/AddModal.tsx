@@ -209,7 +209,14 @@ const AddModal = (props: Props) => {
             </MessageSub>
             {/* type="number"ではないけど入力は数字だけを受け付けたい */}
             {/* あとは一番上の位に0の入力を受け付けないようにしたい */}
-            <DayInput type='number' min="0" value={Number(deadlineDay)} onChange={deadlineDayHandleChange} $isLightOrDark={props.lightOrDark} /><label>日</label>
+            <DayInput
+              type='number'
+              min="0"
+              // value={Number(deadlineDay)}
+              onChange={deadlineDayHandleChange}
+              $isLightOrDark={props.lightOrDark}
+            />
+            <label>日</label>
             <br />
             {/* ↓は本番ではselect */}
             <HourSelect $isLightOrDark={props.lightOrDark} value={deadlineHour} onChange={(e) => deadlineHourHandleChange(e)}>
