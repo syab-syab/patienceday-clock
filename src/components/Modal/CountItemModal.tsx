@@ -18,8 +18,12 @@ type Props = {
 // 1000pxと800pxと700pxと500px
 
 // fontの色は共通(ボタンだけ違う)
+// const succeedBGColor: string =`
+//   background: linear-gradient(to right, #FF3131, #FF914D);
+// `
+
 const succeedBGColor: string =`
-  background: linear-gradient(to right, #FF3131, #FF914D);
+  background-image: repeating-conic-gradient(from 3deg, rgba(255, 255, 255, 1) 10deg 20deg, rgba(255, 0, 0, 1) 20deg 30deg);
 `
 
 const lightModeBGColor: string =`

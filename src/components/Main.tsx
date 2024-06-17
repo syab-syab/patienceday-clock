@@ -87,13 +87,13 @@ const Main = (props: Props) => {
 
   if(props.unfinished) {
     return (
-      <Wrapper $isLightOrDark={props.lightOrDark}>
+      <Wrapper $isLightOrDark={props.lightOrDark} $validItems={props.unfinished}>
         <CountSection lightOrDark={props.lightOrDark} />
       </Wrapper>
     )
    } else {
       return(
-      <Wrapper $isLightOrDark={props.lightOrDark}>
+      <Wrapper $isLightOrDark={props.lightOrDark} $validItems={props.unfinished}>
         <MainTitle>
           世界忍耐時計
         </MainTitle>
