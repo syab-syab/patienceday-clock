@@ -12,7 +12,8 @@ const modifyMilliSeconds = (unix: number, milliSec: number): Array<number> => {
   }
 }
 
-const millisecondsTest = (uni: number, short: boolean = false): string => {
+// 関数名をmillisecToDateに変更
+const millisecToDate = (uni: number, short: boolean = false): string => {
   // 渡されたtimeを各ミリ秒で除算 ex) uni / 31536000000 = x.xxxx
   // 秒以外で答えが1以上なら余りを四捨五入して対応するミリ秒を乗算し、timeから減算 ex) uni - 31536000000 * x = y
   // 減算の答えを次に回していく
@@ -43,4 +44,4 @@ const millisecondsTest = (uni: number, short: boolean = false): string => {
   
 }
 
-export default millisecondsTest
+export default millisecToDate

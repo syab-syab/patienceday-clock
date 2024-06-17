@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { db } from '../models/db'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { Deadline } from '../models/Deadline'
-import millisecondsTest from '../functions/millisecondsTest'
+import millisecToDate from '../functions/millisecToDate'
 import { useEffect } from 'react'
 import milliSecEdit from '../functions/milliSecEdit'
 
@@ -64,8 +64,8 @@ const CountSection = (props: Props) => {
     <Wrapper>
       {
         allCounts?.map((c: Deadline) => {
-          const nowCounting: string = millisecondsTest(milliSecEdit(current - c.startSec))
-          const toDeadLine: string = millisecondsTest(milliSecEdit(c.deadline - current))
+          const nowCounting: string = millisecToDate(milliSecEdit(current - c.startSec))
+          const toDeadLine: string = millisecToDate(milliSecEdit(c.deadline - current))
           return (
             <CountItem
               key={c.id}

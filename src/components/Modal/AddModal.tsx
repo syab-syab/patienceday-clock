@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useState } from 'react'
-import millisecondsTest from '../../functions/millisecondsTest'
+import millisecToDate from '../../functions/millisecToDate'
 import milliSecEdit from '../../functions/milliSecEdit'
 import { db } from '../../models/db'
 
@@ -171,7 +171,7 @@ const AddModal = (props: Props) => {
       const startMilli: number = milliSecEdit(Date.now())
       // tmp+startMilli(現在のミリ秒)で期限の日付のミリ秒を出す
       console.log(content, (tmp + startMilli), startMilli, 0, 0)
-      alert(`${content}を${millisecondsTest(tmp, true)}耐える`)
+      alert(`${content}を${millisecToDate(tmp, true)}耐える`)
       await deadline.add({
         name: content,
         deadline: (tmp + startMilli),

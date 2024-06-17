@@ -5,7 +5,7 @@ import { db } from '../../models/db'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { Deadline } from '../../models/Deadline'
 import milliSecEdit from '../../functions/milliSecEdit'
-import millisecondsTest from '../../functions/millisecondsTest'
+import millisecToDate from '../../functions/millisecToDate'
 
 type Props = {
   show: boolean,
@@ -112,7 +112,7 @@ const HistoryModal = (props: Props) => {
                   deadLine={c.achievement}
                   history={true}
                   content={c.name}
-                  count={millisecondsTest(milliSecEdit(c.finishedSec - c.startSec))}
+                  count={millisecToDate(milliSecEdit(c.finishedSec - c.startSec))}
                   itemKey={c.id}
                 />
               )
