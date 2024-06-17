@@ -83,6 +83,7 @@ const MessageHeading = styled.h1`
 
 const ItemWrapper = styled.div`
   overflow-y: scroll;
+  scrollbar-width: none;
   height: 70vh;
 `
 

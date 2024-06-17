@@ -26,6 +26,10 @@ const succeedBGColor: string =`
   background-image: repeating-conic-gradient(from 3deg, rgba(255, 255, 255, 1) 10deg 20deg, rgba(255, 0, 0, 1) 20deg 30deg);
 `
 
+const succeedCDSColor: string = `
+  background: transparent;
+`
+
 const lightModeBGColor: string =`
   background: #F5FFA2;
 `
@@ -90,12 +94,13 @@ const CountdownSpace = styled.div<{$isDeadLine?: number, $isLightOrDark?: boolea
   border-radius: 0.8rem;
   padding: 1rem;
   margin: 1rem 0;
-  ${props => props.$isDeadLine ? succeedBGColor : props.$isLightOrDark ? lightModeCDSColor : darkModeCDSColor}
+  ${props => props.$isDeadLine ? succeedCDSColor : props.$isLightOrDark ? lightModeCDSColor : darkModeCDSColor}
 `
 
 const AlmostWrapper = styled.div`
   height: 70vh;
   overflow-y: scroll;
+  scrollbar-width: none
 `
 
 const MessageWrapper = styled.div`
@@ -118,7 +123,17 @@ const MessageCount = styled.h2`
   font-size: 3rem;
 `
 
+const SucceedMessage: Array<string> = [
+  "あなたが神か？",
+  "そこにシビれる!あこがれるゥ!",
+  "ぼくは敬意を表するッ！",
+  "「おめでとう」…それしか言う言葉がみつからない…",
+  "もっとも『むずかしい事』は！『自分を乗り越える事』さ！"
+]
+
 const CountItemModal = (props: Props) => {
+  console.log(SucceedMessage[Math.floor(Math.random() * SucceedMessage.length)])
+  // console.log(Math.floor(Math.random() * SucceedMessage.length))
 
   // finishedの値を変更する(0から1に)
   // 1から0にはできないようにする
@@ -132,9 +147,12 @@ const CountItemModal = (props: Props) => {
       = deadLine ? 
       "目標期限達成おめでとうございます！終了しますか？" : "まだ目標期限を達成していませんが、終了しますか？"
     const result = window.confirm(resultMessage)
+    const finishedMessage: string = `
+      ${deadLine ? SucceedMessage[Math.floor(Math.random() * SucceedMessage.length)] : "人というのは成功や勝利よりも『失敗』から学ぶことが多い……"}
+    `
     if(result) {
       await db.deadline.update( index, {finished: 1 , finishedSec: Date.now()})
-      alert("お疲れさまでした！")
+      alert(finishedMessage)
     } else {
       alert("引き続き頑張ってください！")
     }
