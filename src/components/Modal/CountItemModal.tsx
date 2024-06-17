@@ -123,17 +123,20 @@ const CountItemModal = (props: Props) => {
   // finishedの値を変更する(0から1に)
   // 1から0にはできないようにする
   // 優先度は中、追加機能を実装してから
-  const toggleStatus = async (index?: number) => {
+  const toggleStatus = async (index?: number, deadLine?: number) => {
     // 期限まで忍耐が続いていないものに対しては
     // 本当に終了するかどうかを尋ねること
     // updateは更新したいデータのプライマリーキーを第一引数に指定し
     // 第二引数に変更するプロパティとその値を指定する
-    const result = window.confirm("終了しますか？")
+    const resultMessage: string
+      = deadLine ? 
+      "目標期限達成おめでとうございます！終了しますか？" : "まだ目標期限を達成していませんが、終了しますか？"
+    const result = window.confirm(resultMessage)
     if(result) {
       await db.deadline.update( index, {finished: 1 , finishedSec: Date.now()})
-      alert("終了しました。")
+      alert("お疲れさまでした！")
     } else {
-      alert("引き続き頑張ってください。")
+      alert("引き続き頑張ってください！")
     }
   }
 
@@ -168,8 +171,18 @@ const CountItemModal = (props: Props) => {
             }
           </CountdownSpace>
         </AlmostWrapper>
-        <Button $isLightOrDark={props.lightOrDark} onClick={() => toggleStatus(props.indexKey)}>終了する</Button>
-        <Button $isLightOrDark={props.lightOrDark} onClick={props.onClickFunc}>閉じる</Button>
+        <Button
+          $isLightOrDark={props.lightOrDark}
+          onClick={() => toggleStatus(props.indexKey, props.deadLine)}
+        >
+          終了する
+        </Button>
+        <Button
+          $isLightOrDark={props.lightOrDark}
+          onClick={props.onClickFunc}
+        >
+          閉じる
+        </Button>
       </Modal>
     </Wrapper>
     )

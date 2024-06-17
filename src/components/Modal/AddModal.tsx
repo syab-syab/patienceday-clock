@@ -93,19 +93,21 @@ const MessageWrapper = styled.div`
   font-size: 4rem;
 `
 
-const MessageHeading = styled.h1`
+const MessageHeading = styled.p`
   margin: 0;
-  font-size: 4rem;
+  font-size: 3.5rem;
+  font-weight: bold;
 `
 
 const MessageSub = styled.p`
   margin: 0;
-  font-size: 2rem;
+  font-size: 2.5rem;
+  font-weight: bold;
 `
 
 // input類のサイズは本番で
 const ContentInput = styled.input<{$isLightOrDark?: boolean}>`
-  margin: 1rem;
+  margin-bottom: 2rem;
   border: 0.1rem solid;
   font-size: 3rem;
   @media (max-width: 500px) {
@@ -194,11 +196,16 @@ const AddModal = (props: Props) => {
         <Modal $isLightOrDark={props.lightOrDark}>
           <MessageWrapper>
             <MessageHeading>
-              何を我慢する？
+              何を耐えますか？
             </MessageHeading>
-            <ContentInput type='text' value={content} onChange={contentHandleChange} $isLightOrDark={props.lightOrDark} />
+            <ContentInput
+              type='text'
+              value={content}
+              onChange={contentHandleChange}
+              $isLightOrDark={props.lightOrDark}
+            />
             <MessageSub>
-              どのくらい我慢する？
+              どのくらい耐えますか？
             </MessageSub>
             {/* type="number"ではないけど入力は数字だけを受け付けたい */}
             {/* あとは一番上の位に0の入力を受け付けないようにしたい */}
