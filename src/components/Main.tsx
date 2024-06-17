@@ -98,8 +98,7 @@ const Main = (props: Props) => {
           世界忍耐時計
         </MainTitle>
         <SubTitle>
-          -PatientDay Clock-
-          {/* Patientの方が良いかも？ */}
+          -PatienceDay Clock-
         </SubTitle>
         <TopMessage lightDark={props.lightOrDark} />  
       </Wrapper>
