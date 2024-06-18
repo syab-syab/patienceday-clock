@@ -79,11 +79,6 @@ const SubTitle = styled.h2`
 
 
 const Main = (props: Props) => {
-  // const validateData: Array<Deadline> = props.items
-
-  // console.log(props.items)
-  // Dexie.js固有の関数countで数が取ってこれそうな感じがするけどうまくいかない
-  // console.log("length=", validateData.length)
 
   if(props.unfinished) {
     return (

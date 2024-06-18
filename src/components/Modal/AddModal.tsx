@@ -141,9 +141,6 @@ const selectHourValues: Array<string> = [
 
 const AddModal = (props: Props) => {
 
-  // const [show, setShow] = useState<boolean>(props.show)
-  // console.log(props.show)
-
   // 忍耐の内容(文字列)
   const [content, setContent] = useState<string>("")
   const contentHandleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -172,7 +169,7 @@ const AddModal = (props: Props) => {
       // スタート時のミリ秒のした三桁を000にする
       const startMilli: number = milliSecEdit(Date.now())
       // tmp+startMilli(現在のミリ秒)で期限の日付のミリ秒を出す
-      console.log(content, (tmp + startMilli), startMilli, 0, 0)
+      // console.log(content, (tmp + startMilli), startMilli, 0, 0)
       alert(`${content}を${millisecToDate(tmp, true)}耐える`)
       await deadline.add({
         name: content,
