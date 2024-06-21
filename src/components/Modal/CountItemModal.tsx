@@ -24,10 +24,12 @@ type Props = {
 
 const succeedBGColor: string =`
   background-image: repeating-conic-gradient(from 3deg, rgba(255, 255, 255, 1) 10deg 20deg, rgba(255, 0, 0, 1) 20deg 30deg);
+  color: black;
 `
 
 const succeedCDSColor: string = `
   background: transparent;
+  color: black;
 `
 
 const lightModeBGColor: string =`
